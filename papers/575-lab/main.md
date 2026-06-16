@@ -31,8 +31,21 @@ code, search the web, and delegate to sub-agents based on natural language reque
 this capability comes with a fundamental transparency problem: we cannot inspect the internal
 decision process that leads an agent to choose one tool over another.
 
+Transparency of agent decisions is increasingly important as AI regulations are implemented
+across many geographies and industries. Traditional approaches to AI Governance
+require the ability to interpret and explain model behavior and agentic systems are subject 
+to the same scrutiny, even if their mechanics are different. Transparency requirements are 
+grounded in the need to verify AI systems are operating as intended, leading to stronger trust in
+and adoption of the technology. Engendering trust in AI systems requires a framework for responsible
+AI development; we choose to follow the transparency principle outlined in the RAFT framework
+[@ref_gandhi2025] as the underpinning and motivation for understanding agent behavior.
+
 Consider an agent that receives the request "Find information about our company's API rate
 limits." The agent might choose between searching internal documentation or the public web.
+The agent's decision to use internal search is the correct one, but what if it instead chose the wrong
+tool or took an unauthorized action? Without the ability to trace and understand the model's interpretation
+of both the request and the environment in which it is working, users can not be confident that the agent
+is taking the right course of action and in turn can not trust it to operate as required.
 Understanding *why* the model interprets "our company's" as requiring internal search, rather
 than treating it as a generic reference, requires inspecting the model's internal
 representations, not just its outputs.
