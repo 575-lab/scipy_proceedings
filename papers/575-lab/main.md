@@ -161,6 +161,18 @@ model. The SAE is trained unsupervised on the extracted activations; contrastive
 as post-hoc statistical probes for feature analysis and interpretation.
 ```
 
+The study is reproducible from the command line: pair generation is a one-off step, after which a
+single command runs the remaining stages ([](#code:pipeline)). Flags select individual steps
+(`--step`), additional layers (`--layers`), or a different subject model (`--subject-model`).
+
+```{code-block} bash
+:label: code:pipeline
+:caption: Reproducing the study from the command line.
+
+python -m kiji_inspector.generate_pairs 1300
+python -m kiji_inspector.pipeline
+```
+
 ### Contrastive Pair Generation
 
 Each contrastive pair captures two semantically similar requests that require different tools. The
