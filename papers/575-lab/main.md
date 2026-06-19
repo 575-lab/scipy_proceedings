@@ -695,6 +695,12 @@ Interactive demo application showing SAE-powered explainability for a home impro
 activated SAE features.
 ```
 
+A runnable quickstart that reproduces this home-repair example is provided as supplementary material
+([](#quickstart)). In a handful of cells it captures a decision-token activation from the subject model,
+loads a pretrained SAE with `SAE.from_pretrained`, and reports the top features driving tool selection;
+it requires only `transformers` and `kiji-inspector` and runs on CPU. It can also be executed directly in
+Google Colab: [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dataiku/kiji-inspector/blob/main/demo/quickstart_colab.ipynb)
+
 ### Limitations
 
 **Compute requirements.** The pipeline requires substantial GPU resources: a 235B parameter model
