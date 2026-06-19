@@ -668,6 +668,52 @@ hidden state is intercepted and projected through the SAE to obtain a sparse fea
 most active dimensions are mapped to pre-computed feature labels, producing a human-readable
 decision report alongside the agent's tool selection.
 
+To make this extraction step practical at serving time, the repository ships a patch for vLLM
+that adds an `--extract-activation-layers` option: it captures prompt activations for the
+selected layers and returns them in the OpenAI-compatible chat and completion responses
+(supporting the Nemotron and Gemma-3 architectures). Once applied, the subject model can be
+served with hidden-state extraction enabled at the decision layer ([](#code:vllm-serve)):
+
+```{code-block} bash
+:label: code:vllm-serve
+:caption: Serving the subject model with layer-20 hidden-state extraction enabled.
+
+vllm serve nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16 \
+    --extract-activation-layers 20
+```
+
+We release trained SAEs for several subject models on the Hugging Face Hub
+([](#tab:sae-registry)). Given a subject model, `SAE.from_pretrained` resolves the matching SAE
+repository from kiji-inspector's built-in registry and loads it together with its feature labels
+in a single call ([](#code:load-sae)):
+
+```{code-block} python
+:label: code:load-sae
+:caption: Loading the trained SAE and its feature labels for the paper's subject model.
+
+from kiji_inspector import SAE
+
+# The SAE repository is resolved from kiji-inspector's built-in registry
+sae, feature_descriptions = SAE.from_pretrained(
+    base_model="nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    layer=20,
+)
+```
+
+```{table} Subject models with trained SAEs in the kiji-inspector registry.
+:label: tab:sae-registry
+:align: center
+
+| Subject model | SAE repository (Hugging Face) | Group |
+|:---|:---|:---|
+| `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16` | `575-lab/kiji-inspector-NVIDIA-Nemotron-3-Nano-30B-A3B-BF16` | NVIDIA |
+| `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8` | `575-lab/kiji-inspector-NVIDIA-Nemotron-3-Nano-30B-A3B-FP8` | NVIDIA |
+| `google/gemma-3-27b-it` | `575-lab/kiji-inspector-google-gemma-3-27b-it` | Experimental |
+| `google/gemma-4-E4B-it` | `575-lab/kiji-inspector-google-gemma-4-E4B-it` | Experimental |
+| `google/gemma-4-31B-it` | `575-lab/kiji-inspector-google-gemma-4-31B-it` | Experimental |
+| `google/gemma-4-26B-A4B-it` | `575-lab/kiji-inspector-google-gemma-4-26B-A4B-it` | Experimental |
+```
+
 ```{figure} images/inference_pipeline.png
 :label: fig:inference
 :align: center
