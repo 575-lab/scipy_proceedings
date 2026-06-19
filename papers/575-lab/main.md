@@ -695,10 +695,12 @@ Interactive demo application showing SAE-powered explainability for a home impro
 activated SAE features.
 ```
 
-A runnable quickstart that reproduces this home-repair example is provided as supplementary material
-([](#quickstart)). In a handful of cells it captures a decision-token activation from the subject model,
-loads a pretrained SAE with `SAE.from_pretrained`, and reports the top features driving tool selection;
-it requires only `transformers` and `kiji-inspector` and runs on CPU. It can also be executed directly in
+A runnable, open-source quickstart is provided as supplementary material ([](#quickstart)). Rather than
+reproducing the results above, it applies the pipeline to a smaller home-repair dataset using a JumpReLU
+SAE trained on that scenario (distinct from the SAE reported in this paper). In a handful of cells it
+captures a decision-token activation from the subject model, loads that pretrained SAE with
+`SAE.from_pretrained`, and reports the top features driving tool selection; it requires only
+`transformers` and `kiji-inspector` and runs on CPU. It can also be executed directly in
 Google Colab: [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/575-lab/scipy_proceedings/blob/2026/papers/575-lab/quickstart_colab.ipynb)
 
 ### Limitations
