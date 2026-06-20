@@ -798,7 +798,7 @@ In keeping with the SciPy generative AI disclosure policy, we report the use of 
 tools in the preparation of this work. AI-assisted coding tools (Anthropic's Claude, including via
 Claude Code) supported development of the `kiji-inspector` codebase, where they were used to draft
 boilerplate code, scaffold tests, and suggest refactors. The same class of tools assisted in preparing
-this manuscript, where they were used to imrpove language for clarity. All AI-assisted outputs, such as code, and texts were reviewed, executed, and revised by the authors, who take full responsibility for
+this manuscript, where they were used to improve language for clarity. All AI-assisted outputs, such as code, and texts were reviewed, executed, and revised by the authors, who take full responsibility for
 the accuracy and integrity of the final content. Standard spell-checkers, grammar tools (e.g., Grammarly), and code
 linters (e.g., GitHub Co-Pilot) are excluded from this disclosure, consistent with the policy.
 
